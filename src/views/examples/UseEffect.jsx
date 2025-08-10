@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageTitle from "../../components/layout/PageTitle";
 import SectionTitle from "../../components/layout/SectionTitle";
 
+// Ex #01
 function calcFatorial(num) {
   const n = parseInt(num);
   if (n < 0) return -1;
@@ -30,6 +31,12 @@ const UseEffect = (props) => {
     },
     [fatorial]
   );
+  // Ex #02
+  const [status, setStatus] = useState("Ímpar");
+
+  useEffect(function () {
+    setStatus(number % 2 === 0 ? "Par" : "Ímpar");
+  });
 
   return (
     <div className="UseEffect">
@@ -54,7 +61,12 @@ const UseEffect = (props) => {
         />
       </div>
       <SectionTitle title="Exercicio #02" />
-      <div className="center">teste</div>
+      <div className="center">
+        <div>
+          <span className="text">Status: </span>
+          <span className="text red">{status}</span>
+        </div>
+      </div>
     </div>
   );
 };
