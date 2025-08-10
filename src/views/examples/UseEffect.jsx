@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageTitle from "../../components/layout/PageTitle";
 
-function calcFatorial(n) {
+function calcFatorial(num) {
+  const n = parseInt(num);
   if (n < 0) return -1;
   if (n === 0) return 1;
   return calcFatorial(n - 1) * n;
@@ -10,6 +11,24 @@ function calcFatorial(n) {
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1);
   const [fatorial, setFatorial] = useState(1);
+
+  // O useEffect abaixo é executado toda vez que o valor de 'number' muda.
+  // Ele calcula o fatorial do número atual e atualiza o estado 'fatorial'.
+  useEffect(
+    function () {
+      setFatorial(calcFatorial(number));
+    },
+    [number]
+  );
+
+  useEffect(
+    function () {
+      if (fatorial > 100000) {
+        document.title = "To much";
+      }
+    },
+    [fatorial]
+  );
 
   return (
     <div className="UseEffect">
@@ -21,7 +40,9 @@ const UseEffect = (props) => {
       <div className="center">
         <div>
           <span className="text">Fatorial:</span>
-          <span className="text red">{fatorial}</span>
+          <span className="text red">
+            {fatorial === -1 ? "Não existe" : fatorial}
+          </span>
         </div>
         <input
           type="number"
