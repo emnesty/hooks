@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
 
+function calcFatorial(n) {
+  if (n < 0) return -1;
+  if (n === 0) return 1;
+  return calcFatorial(n - 1) * n;
+}
+
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1);
+  const [fatorial, setFatorial] = useState(1);
 
   return (
     <div className="UseEffect">
@@ -14,7 +21,7 @@ const UseEffect = (props) => {
       <div className="center">
         <div>
           <span className="text">Fatorial:</span>
-          <span className="text red">100</span>
+          <span className="text red">{fatorial}</span>
         </div>
         <input
           type="number"
